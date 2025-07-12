@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grow A Garden – Top-Up Seckels & Pet Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .leaf {
+      position: fixed;
+      top: -10vh;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f342.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.6;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes fall {
+      0% { transform: translateX(0) rotate(0deg); opacity: 0.8; }
+      50% { transform: translateX(calc(var(--sway) / 2)) rotate(180deg); opacity: 0.6; }
+      100% { transform: translateX(var(--sway)) translateY(110vh) rotate(360deg); opacity: 0.9; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-900 via-green-900 to-teal-950 text-gray-100 relative overflow-x-hidden">
+
+<script>
+const LEAF_COUNT = 35;
+const root = document.body;
+for (let i = 0; i < LEAF_COUNT; i++) {
+  const leaf = document.createElement('div');
+  leaf.className = 'leaf';
+  const delay = Math.random() * 10;
+  const duration = 10 + Math.random() * 10;
+  const left = Math.random() * 100;
+  const sway = (Math.random() * 200 - 100) + 'vw';
+  const size = 20 + Math.random() * 30;
+  leaf.style.left = left + 'vw';
+  leaf.style.width = size + 'px';
+  leaf.style.height = size + 'px';
+  leaf.style.animationDuration = duration + 's';
+  leaf.style.animationDelay = delay + 's';
+  leaf.style.setProperty('--sway', sway);
+  root.appendChild(leaf);
+}
+</script>
+
+<header class="backdrop-blur bg-emerald-950/50 shadow-lg sticky top-0 z-20">
+  <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+    <h1 class="text-2xl font-extrabold text-lime-300 tracking-wider">GROW A GARDEN</h1>
+  </div>
+</header>
+
+<section class="relative isolate overflow-hidden">
+  <img src="https://i.imgur.com/7SC0vJY.jpeg" alt="Garden rows" class="w-full h-[28rem] object-cover opacity-40" />
+  <div class="absolute inset-0 bg-gradient-to-t from-teal-950 to-transparent"></div>
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+    <h2 class="text-4xl md:text-6xl font-black text-lime-200 drop-shadow-lg">Panen Koin, Rawat Hewan!</h2>
+    <p class="mt-4 max-w-xl text-gray-200 text-lg">Top-Up Seckels & koleksi pet lucu untuk kebun Roblox-mu. Proses instan!</p>
+    <a href="#topup" class="mt-6 inline-block px-8 py-3 bg-lime-500 hover:bg-lime-400 text-emerald-950 font-bold rounded-xl shadow-xl transition">Mulai Sekarang</a>
+  </div>
+</section>
+
+<section id="topup" class="max-w-5xl mx-auto px-4 py-16">
+  <h3 class="text-3xl font-bold text-lime-300 mb-8">Top-Up Seckels</h3>
+  <form class="grid gap-6 bg-emerald-950/60 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+    <div>
+      <label class="block text-sm font-semibold mb-1">Username Roblox</label>
+      <input type="text" placeholder="@Username" class="w-full rounded-lg p-3 bg-emerald-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400" required />
+    </div>
+    <div>
+      <label class="block text-sm font-semibold mb-1">Pilih Nominal Seckels</label>
+      <select class="w-full rounded-lg p-3 bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-lime-400">
+        <option value="10000000">10.000.000 Seckels – Rp 2.000</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-sm font-semibold mb-1">Metode Pembayaran</label>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center justify-between px-4 py-3 rounded-lg bg-indigo-600/80 backdrop-blur-sm shadow">
+          <span class="font-semibold tracking-wide">DANA</span>
+          <span class="text-sm italic text-gray-200">Silakan lanjut untuk melihat detail</span>
+        </div>
+      </div>
+    </div>
+    <button onclick="sendWhatsAppMessage(event)" class="mt-2 w-full py-3 rounded-xl bg-lime-500 hover:bg-lime-400 text-emerald-950 font-extrabold shadow-lg">Bayar Sekarang</button>
+  </form>
+</section>
+
+<section id="pets" class="bg-emerald-950/40 py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <h3 class="text-3xl font-bold text-lime-300 mb-8">Pet Koleksi</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-emerald-900/70">
+        <img src="https://i.imgur.com/1N3W7q2.png" alt="Bear Bee" class="w-full h-48 object-cover transition group-hover:scale-105" />
+        <div class="p-4 flex flex-col gap-2">
+          <h4 class="text-xl font-bold">Bear Bee</h4>
+          <p class="text-sm text-gray-300">Stok: 1</p>
+          <p class="text-lime-400 font-semibold">Rp 25.000</p>
+          <button class="mt-auto px-4 py-2 bg-lime-500 hover:bg-lime-400 text-emerald-950 font-bold rounded-lg">Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-emerald-900/70">
+        <img src="https://i.imgur.com/qAShZTu.png" alt="Bee" class="w-full h-48 object-cover transition group-hover:scale-105" />
+        <div class="p-4 flex flex-col gap-2">
+          <h4 class="text-xl font-bold">Bee</h4>
+          <p class="text-sm text-gray-300">Stok: 5</p>
+          <p class="text-lime-400 font-semibold">Rp 1.000</p>
+          <button class="mt-auto px-4 py-2 bg-lime-500 hover:bg-lime-400 text-emerald-950 font-bold rounded-lg">Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-emerald-900/70">
+        <img src="https://i.imgur.com/cbUdZgc.png" alt="Honey Bee" class="w-full h-48 object-cover transition group-hover:scale-105" />
+        <div class="p-4 flex flex-col gap-2">
+          <h4 class="text-xl font-bold">Honey Bee</h4>
+          <p class="text-sm text-gray-300">Stok: 1</p>
+          <p class="text-lime-400 font-semibold">Rp 2.000</p>
+          <button class="mt-auto px-4 py-2 bg-lime-500 hover:bg-lime-400 text-emerald-950 font-bold rounded-lg">Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-emerald-900/70">
+        <img src="https://i.imgur.com/jz0A4bf.png" alt="Raptor" class="w-full h-48 object-cover transition group-hover:scale-105" />
+        <div class="p-4 flex flex-col gap-2">
+          <h4 class="text-xl font-bold">Raptor</h4>
+          <p class="text-sm text-gray-300">Stok: 7</p>
+          <p class="text-lime-400 font-semibold">Rp 1.000</p>
+          <button class="mt-auto px-4 py-2 bg-lime-500 hover:bg-lime-400 text-emerald-950 font-bold rounded-lg">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function sendWhatsAppMessage(event) {
+  event.preventDefault();
+  const username = document.querySelector('#topup input[type=text]').value;
+  if (!username) {
+    alert('Masukkan username Roblox terlebih dahulu!');
+    return;
+  }
+  const message = `Halo Admin, saya telah melakukan pembayaran top-up:%0A%0AUsername: ${username}%0AJumlah: 10.000.000 Seckels%0AHarga: Rp 2.000%0A%0AMohon segera diproses, terima kasih!`;
+  window.open(`https://wa.me/6282231037274?text=${message}`, '_blank');
+}
+</script>
+
+</body>
+</html>
